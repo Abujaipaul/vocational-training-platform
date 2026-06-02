@@ -4,6 +4,8 @@ import NavBar from './navbar'
 import Hero from './hero'
 import CourseCatalog from './coursecatalog'
 import Footer from './footer'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import CheckOut from './checkout'
 
 
 
@@ -12,12 +14,17 @@ function App() {
 
   return (
     <>
-      <div>
+     <BrowserRouter>
         <NavBar />
-        <Hero />
-        <CourseCatalog />
-        <Footer />
-      </div>
+         <Routes>
+            <Route path='/' element={<><Hero /> <CourseCatalog />  </>}/>
+            <Route path="/checkout" element={<CheckOut />} />
+         </Routes>
+         <Footer />
+         
+    
+     </BrowserRouter>
+      
     </>
   )
 }

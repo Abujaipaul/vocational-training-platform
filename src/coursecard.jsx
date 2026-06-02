@@ -1,7 +1,12 @@
+import { useNavigate } from "react-router-dom"
+import { usePlatformStore } from "./platformstore"
 
 
-export default function CourseCard({title, image, duration}){
-   
+export default function CourseCard({title, image, duration, price}){
+    const {selectedCourse, setSelectedCourse} = usePlatformStore()
+
+    const navigate = useNavigate()
+     console.log(selectedCourse)
 
     return(
         <>
@@ -13,7 +18,7 @@ export default function CourseCard({title, image, duration}){
                        <h1 className="font-bold">{title}</h1>
                        <p>{duration}</p>
                         <div>
-                         <button className='text-white bg-cyan-500 p-2 rounded-xl hover:opacity-75'>View Details</button>
+                         <button onClick={() => { navigate("/checkout") ; setSelectedCourse({title, price}) }} className='text-white bg-cyan-500 p-2 rounded-xl hover:opacity-75'>View Details</button>
                         </div>
              </div>
          

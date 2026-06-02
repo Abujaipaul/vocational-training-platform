@@ -14,7 +14,7 @@ export default function CourseCatalog(){
                 {
                   course.map((item) => (
                     
-                    <CourseCard key={item.id} title={item.title} image={item.image} duration={item.duration}  />
+                    <CourseCard key={item.id} title={item.title} image={item.image} duration={item.duration} price={item.price}  />
                   ))
                 }
                
