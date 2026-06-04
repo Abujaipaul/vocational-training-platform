@@ -1,25 +1,45 @@
 import {useState} from 'react'
 import { usePlatformStore } from './platformstore'
+import {usePaystackPayment} from 'react-paystack'
 
 export default function CheckOut(){
    const [name, setName] = useState("")
    const [email, setEmail] = useState("")
    const [number, setNumber] = useState("")
    const {selectedCourse} = usePlatformStore()
-    
-     function handleSubmit(e){
-       e.preventDefault()
 
-         const formData = { name, email, number };
+     const config = {
+    reference: (new Date()).getTime().toString(),
+    email: email, // This will match the useState variable for the email input
+    amount: selectedCourse.price * 100, // The Kobo rule!
+    publicKey: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+    };
 
-        console.log("Form Submitted Successfully:", formData);
+     function onSuccess (reference) {
+     console.log("Transaction Successful! Reference:", reference);
+      
+      // We will handle clearing the form and showing a success message here later
+       };
 
-    
+     function onClose () {
+     console.log("User closed the payment gateway.");
+    };  
+
+ const initializePayment = usePaystackPayment(config);
+     
+  function handleSubmit(e) {
+    e.preventDefault(); 
+    // Safety Check: Don't open Paystack if the email is empty
+    if (!email || !name || !number) {
+        alert("Please fill in all details before paying.");
+        return;
+    }
+    // Trigger the Paystack modal and pass in your callbacks
+       initializePayment({ onSuccess, onClose });
         setName("");
         setEmail("");
         setNumber("");
-     }
-
+    }
     return(
         <>
           <div className="max-w-2xl mx-auto shadow-lg my-20 rounded-2xl p-15 pb-10 text-lg">

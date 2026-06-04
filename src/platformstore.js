@@ -15,8 +15,6 @@ export const usePlatformStore = create(function (set) {
 
     setSelectedCourse : function (course){
       set(function () {
-          
-
          return {
             selectedCourse : course
          }
