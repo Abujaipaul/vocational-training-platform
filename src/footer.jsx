@@ -13,7 +13,7 @@ export default function Footer(){
                 <p> &copy; 2026. All rights reserved.</p>
 
              </div>
-             <div className="flex gap-10 max-sm:justify-center max-md:justify-center">
+             <div className="flex gap-10 max-sm:justify-center max-sm:text-sm max-md:justify-center">
                 <button className="hover:opacity-25">Terms of Service</button>
                 <button className="hover:opacity-25">Privacy Policy</button>
                 <button className="hover:opacity-25">Contact Us</button>          
