@@ -14,7 +14,7 @@ export default function Hero(){
                 </div>
             </div>
             <div className='w-1/2 h-screen max-sm:w-3/4 max-sm:h-1/2 mb-16 '>
-                <img src={heroImage} className='w-full h-full rounded-2xl' alt="woman in a workshop" />
+                <img src={heroImage} className='w-full h-full rounded-2xl' loading='lazy' alt="woman in a workshop" />
             </div>
           </div>
         </>
