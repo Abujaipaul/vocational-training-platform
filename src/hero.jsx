@@ -2,7 +2,7 @@ import heroImage from './assets/hero-image.png'
 
 export default function Hero(){
 
-
+    
     return (
         <>
           <div className='flex flex-wrap max-sm:flex-col max-sm:items-center max-sm:text-center mt-2 mb-7 bg-slate-900 text-white'>

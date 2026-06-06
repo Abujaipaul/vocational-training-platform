@@ -6,7 +6,7 @@ export default function CourseCatalog(){
 
     return (
         <>
-          <div className="mb-20">
+          <div id="courses" className="mb-20">
             <div className="flex justify-center font-extrabold text-2xl mt-3 mb-10 ">
                 <h1>Available Course</h1>
             </div>

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorFallback from './errorfallback'
 import './App.css'
 import NavBar from './navbar'
 import Hero from './hero'
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+     <ErrorBoundary FallbackComponent={ErrorFallback}>
      <BrowserRouter>
         <NavBar />
          <Routes>
@@ -25,7 +27,7 @@ function App() {
          
     
      </BrowserRouter>
-      
+      </ErrorBoundary>
     </>
   )
 }
