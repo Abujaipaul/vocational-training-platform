@@ -7,6 +7,8 @@ import CourseCatalog from './coursecatalog'
 import Footer from './footer'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import CheckOut from './checkout'
+import Login from './login'
+import Signup from './signup'
 
 
 
@@ -17,6 +19,8 @@ function App() {
     <>
      <ErrorBoundary FallbackComponent={ErrorFallback}>
      <BrowserRouter>
+        <Signup />
+        <Login />
         <NavBar />
          <Routes>
             <Route path='/' element={<><Hero /> <CourseCatalog />  </>}/>
