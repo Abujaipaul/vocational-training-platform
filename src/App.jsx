@@ -18,20 +18,23 @@ function App() {
   return (
     <>
      <ErrorBoundary FallbackComponent={ErrorFallback}>
-     <BrowserRouter>
-        <Signup />
-        <Login />
-        <NavBar />
-         <Routes>
-            <Route path='/' element={<><Hero /> <CourseCatalog />  </>}/>
-            <Route path="/checkout" element={<CheckOut />} />
-            <Route path="*" element={<div className='flex items-center justify-center text-3xl font-bold my-38'>404 - Page Not Found</div>} />
-         </Routes>
-         <Footer />
-         
-    
-     </BrowserRouter>
-      </ErrorBoundary>
+  <BrowserRouter>
+     <NavBar /> 
+     
+     <Routes>
+        <Route path='/' element={<><Hero /> <CourseCatalog /></>}/>
+        <Route path="/checkout" element={<CheckOut />} />
+        
+        {/* dedicated Auth Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        
+        <Route path="*" element={<div className='flex items-center justify-center text-3xl font-bold my-38'>404 - Page Not Found</div>} />
+     </Routes>
+     
+     <Footer /> 
+  </BrowserRouter>
+</ErrorBoundary>
     </>
   )
 }

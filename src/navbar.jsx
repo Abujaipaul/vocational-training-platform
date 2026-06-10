@@ -1,10 +1,12 @@
 import headerLogo from './assets/vocational-logo.png'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { usePlatformStore } from './platformstore'
 
 
 export default function NavBar(){
     const navigate = useNavigate()
     const location = useLocation()
+    const  { user} = usePlatformStore()
     
     //when a user click on browse course it scroll into there
     function handleCourseClick(){
@@ -32,7 +34,16 @@ export default function NavBar(){
                     <span onClick={handleCourseClick} className='cursor-pointer hover:opacity-35 text-lg'>Browse Course</span>
                 </div>
                 <div className='pt-5'>
-                    <span className='cursor-pointer hover:opacity-35 text-lg'>Student Login</span>
+                    {
+                        user ? (
+                            <span>Welcome, {user.email}</span>
+                        )
+                        :
+                        (
+                          <span onClick={() => navigate('/login')} className='cursor-pointer hover:opacity-35 text-lg'>Student Login</span>
+                        )
+                    }
+                    
                 </div>
              </div>
           </div>

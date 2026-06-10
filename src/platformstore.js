@@ -12,6 +12,7 @@ export const usePlatformStore = create(function (set) {
         {id : 3, image : carpenter, title : "Commercial Carpentry", duration : "12 Weeks" , price : 150000}
     ],
     selectedCourse : null,
+    user : null,
 
     setSelectedCourse : function (course){
       set(function () {
@@ -19,7 +20,14 @@ export const usePlatformStore = create(function (set) {
             selectedCourse : course
          }
       })
-    }
+    },
+     setUser : function (sessionUser) {
+       set(function () {
+         return {
+            user : sessionUser
+         }
+       })
+     }
 
 
    }

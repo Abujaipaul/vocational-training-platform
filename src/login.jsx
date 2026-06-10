@@ -1,14 +1,15 @@
 import { useState } from "react";
-// Import the client you built in Mission 2. 
-// (Make sure the path './supabaseClient' matches exactly where you saved it)
 import { supabase } from "./supabaseClient"; 
+import { useNavigate } from "react-router-dom";
+import { usePlatformStore } from "./platformstore";
 
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
-    // 1. New loading state to handle the UI while the database thinks
+     //loading state
     const [loading, setLoading] = useState(false); 
+    const navigate = useNavigate()
+    const {setUser} = usePlatformStore()
 
     // 2. Add 'async' here so we can use 'await' inside the function
     async function handleSubmit(e){
@@ -34,7 +35,8 @@ export default function Login(){
             alert("Error: " + error.message); // Tells the user if password is wrong
         } else {
             console.log("Success! Here is the user data:", data);
-            alert("Login Successful!");
+            setUser(data.user)
+            navigate('/');
         }
         
         // 6. Turn off the loading state and clear inputs
@@ -76,6 +78,9 @@ export default function Login(){
                         {loading ? "Logging in..." : "Login"}
                     </button>
                 </div>
+                <p className="text-center mt-4 text-sm">
+                    Don't have an account? <span className="text-blue-600 cursor-pointer" onClick={() => navigate("/signup")}>Sign up here</span>
+                </p>
             </form>
         </div>
     )
