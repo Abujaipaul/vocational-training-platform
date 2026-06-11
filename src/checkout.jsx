@@ -10,14 +10,13 @@ export default function CheckOut(){
    const [isPaid, setIsPaid] = useState(false)
    const {selectedCourse, setSelectedCourse} = usePlatformStore()
 
-   const navigate = useNavigate()
-
+     const navigate = useNavigate()
 
      const config = {
-    reference: (new Date()).getTime().toString(),
-    email: email, // This will match the useState variable for the email input
-    amount: (selectedCourse?.price || 0 ) * 100, // The Kobo rule!
-    publicKey: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+      reference: (new Date()).getTime().toString(),
+      email: email, // This will match the useState variable for the email input
+      amount: (selectedCourse?.price || 0 ) * 100, // The Kobo rule!
+      publicKey: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
     };
 
      function onSuccess (reference) {
@@ -57,7 +56,6 @@ export default function CheckOut(){
                     <button className='border-2 p-2 rounded-2xl bg-emerald-600 text-white hover:opacity-75' onClick={() => navigate('/')}>Go Home</button>
               </div>
            )
-           
            : 
           (
           <div className="max-w-2xl mx-auto shadow-lg my-20 rounded-2xl p-15 pb-10 text-lg">
