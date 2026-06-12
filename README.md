@@ -21,7 +21,7 @@ This Single Page Application (SPA) digitizes the entire student onboarding workf
 * **Defensive UI & Fault Tolerance:** Engineered a robust `ErrorBoundary` wrapper to catch fatal JavaScript runtime errors, guaranteeing the application degrades gracefully instead of presenting a broken interface to users. Utilized Optional Chaining (`?.`) to prevent null-state rendering crashes.
 * **Smart Cross-Page Navigation:** Combined React Router's `useLocation` with native Web APIs (`scrollIntoView`) to build context-aware navigation, ensuring users are intelligently routed and scrolled to specific DOM elements regardless of their current page state.
 
-## 🗺 Production Roadmap: Enterprise Automation
+## 🗺 Production Roadmap: Enterprise-Automation
 
 The platform has a functioning revenue engine and authentication layer. The active and upcoming phases will finalize the app into a fully automated physical onboarding pipeline:
 
