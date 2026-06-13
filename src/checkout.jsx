@@ -2,15 +2,22 @@ import {useState} from 'react'
 import { usePlatformStore } from './platformstore'
 import {usePaystackPayment} from 'react-paystack'
 import { useNavigate } from 'react-router-dom'
+import { supabase } from './supabaseClient';
+
+
 
 export default function CheckOut(){
    const [name, setName] = useState("")
    const [email, setEmail] = useState("")
    const [number, setNumber] = useState("")
    const [isPaid, setIsPaid] = useState(false)
-   const {selectedCourse, setSelectedCourse} = usePlatformStore()
+   const {user, selectedCourse, setSelectedCourse} = usePlatformStore()
 
      const navigate = useNavigate()
+
+     function generateAdmissionId (){
+      return 'VA-' + Math.floor(Math.random() * 1000000); // Generates something like VA-482910
+     };
 
      const config = {
       reference: (new Date()).getTime().toString(),
@@ -19,8 +26,30 @@ export default function CheckOut(){
       publicKey: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
     };
 
-     function onSuccess (reference) {
+     async function onSuccess (reference) {
      console.log("Transaction Successful! Reference:", reference);
+       // Generate the unique ID
+        const newAdmissionId = generateAdmissionId();
+       //  Prepare the exact payload matching your Supabase columns
+        const enrollmentData = {
+            email: email, 
+            course_name: selectedCourse.title, 
+            amount_paid: selectedCourse.price,
+            admission_id: newAdmissionId
+        };
+        //  Fire it into the database!
+        const { data, error } = await supabase
+            .from('enrollments')
+            .insert([enrollmentData]);
+
+        //  Handle the result
+        if (error) {
+            console.error("Database Error:", error);
+            alert("Payment received, but database sync failed. Contact support.");
+        } else {
+            console.log("Enrollment Saved!", data);
+            alert(`Payment Successful! Your Admission ID is ${newAdmissionId}. Check your email shortly.`);
+        }
       
       // Handle clearing the form and showing a success message here later
          setIsPaid(true) 
@@ -32,6 +61,7 @@ export default function CheckOut(){
 
      function onClose () {
      console.log("User closed the payment gateway.");
+     alert("Wait! You need to complete your payment to get your admission ticket.")
     };  
 
  const initializePayment = usePaystackPayment(config);
