@@ -9,6 +9,8 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import CheckOut from './checkout'
 import Login from './login'
 import Signup from './signup'
+import AdminDashboard from './adminDashboard'; 
+import ProtectedRoute from './protectedRoute';
 
 
 
@@ -20,6 +22,7 @@ function App() {
      <ErrorBoundary FallbackComponent={ErrorFallback}>
   <BrowserRouter>
      <NavBar /> 
+     <AdminDashboard />
      
      <Routes>
         <Route path='/' element={<><Hero /> <CourseCatalog /></>}/>
@@ -28,6 +31,16 @@ function App() {
         {/* dedicated Auth Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        
+         {/* 🛡️ The Locked Admin Route */}
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } 
+        />
         
         <Route path="*" element={<div className='flex items-center justify-center text-3xl font-bold my-38'>404 - Page Not Found</div>} />
      </Routes>

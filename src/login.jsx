@@ -29,7 +29,6 @@ export default function Login(){
             email: email,
             password: password,
         });
-
         // 5. Handle the response
         if (error) {
             alert("Error: " + error.message); // Tells the user if password is wrong
@@ -37,8 +36,7 @@ export default function Login(){
             console.log("Success! Here is the user data:", data);
             setUser(data.user)
             navigate('/');
-        }
-        
+        } 
         // 6. Turn off the loading state and clear inputs
         setLoading(false);
         setEmail("");
