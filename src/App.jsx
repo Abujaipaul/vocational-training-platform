@@ -22,7 +22,6 @@ function App() {
      <ErrorBoundary FallbackComponent={ErrorFallback}>
   <BrowserRouter>
      <NavBar /> 
-     <AdminDashboard />
      
      <Routes>
         <Route path='/' element={<><Hero /> <CourseCatalog /></>}/>
@@ -32,15 +31,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         
-         {/* 🛡️ The Locked Admin Route */}
-        <Route 
-          path="/admin" 
-          element={
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          } 
-        />
+     
+        {/* 🛡️ The Locked Layout Route using Outlet */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<AdminDashboard />} />
+        </Route>
         
         <Route path="*" element={<div className='flex items-center justify-center text-3xl font-bold my-38'>404 - Page Not Found</div>} />
      </Routes>

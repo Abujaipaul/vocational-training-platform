@@ -44,10 +44,27 @@ function AdminDashboard () {
       alert("Error checking in student.");
     }
   };
+   
+  // THE SEARCH ENGINE
+  // This creates a new array containing ONLY the students that match the search
+  const filteredStudents = students.filter((student) => {
+    const searchLower = searchTerm.toLowerCase();
+    
+    // SAFETY NET: If the database value is null, fallback to an empty string ""
+    const safeId = student.admission_id ? String(student.admission_id).toLowerCase() : "";
+    const safeEmail = student.email ? String(student.email).toLowerCase() : "";
+    
+    return (
+      safeId.includes(searchLower) ||
+      safeEmail.includes(searchLower)
+    );
+  });
+
+   
 
   // 4. THE UI SCAFFOLD & TABLE
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+    <div style={{ padding: '20px', fontFamily: 'sans-serif' }} className='mb-32'>
       <h2>🛡️ Admin Command Center</h2>
       
       {/* Search Bar */}
@@ -56,7 +73,7 @@ function AdminDashboard () {
         placeholder="Scan or type Admission ID..." 
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ marginBottom: '20px', padding: '10px', width: '300px' }}
+        style={{ marginBottom: '20px', padding: '10px', width: '300px', border: '1px solid #ccc' }}
       />
 
       {loading ? (
@@ -73,7 +90,7 @@ function AdminDashboard () {
             </tr>
           </thead>
           <tbody>
-            {students.map((student) => (
+            {filteredStudents.map((student) => (
               <tr key={student.id}>
                 <td><strong>{student.admission_id}</strong></td>
                 <td>{student.email}</td> {/* Pulling exactly what you saved to Supabase */}
