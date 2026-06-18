@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from './supabaseClient'; // Make sure this path points to your setup
+import { supabase } from './supabaseClient'; 
 
 function AdminDashboard () {
   // 1. STATE
@@ -27,7 +27,7 @@ function AdminDashboard () {
     }
   }
 
-  // 3. THE UPDATE ENGINE (Checking someone in)
+  // 3. UPDATE ENGINE (Checking someone in)
   async function handleCheckIn (studentId) {
     try {
       const { error } = await supabase
@@ -49,8 +49,8 @@ function AdminDashboard () {
   // This creates a new array containing ONLY the students that match the search
   const filteredStudents = students.filter((student) => {
     const searchLower = searchTerm.toLowerCase();
-    
-    // SAFETY NET: If the database value is null, fallback to an empty string ""
+
+    // If the database value is null, fallback to an empty string ""
     const safeId = student.admission_id ? String(student.admission_id).toLowerCase() : "";
     const safeEmail = student.email ? String(student.email).toLowerCase() : "";
     
@@ -60,7 +60,6 @@ function AdminDashboard () {
     );
   });
 
-   
 
   // 4. THE UI SCAFFOLD & TABLE
   return (
@@ -93,7 +92,7 @@ function AdminDashboard () {
             {filteredStudents.map((student) => (
               <tr key={student.id}>
                 <td><strong>{student.admission_id}</strong></td>
-                <td>{student.email}</td> {/* Pulling exactly what you saved to Supabase */}
+                <td>{student.email}</td> 
                 <td>{student.course_name}</td>
                 
                 <td style={{ color: student.status === 'checked_in' ? 'green' : 'orange' }}>
