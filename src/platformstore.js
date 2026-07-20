@@ -28,8 +28,6 @@ export const usePlatformStore = create(function (set) {
          }
        })
      }
-
-
    }
 })
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, SyntheticEvent } from 'react';
 import { Outlet } from 'react-router-dom';
 
 const ProtectedRoute = () => {
@@ -10,7 +10,7 @@ const ProtectedRoute = () => {
 
   const ADMIN_PASSWORD = "paul2026"; 
 
-  const handleLogin = (e) => {
+   function handleLogin(e : SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     if (passwordInput === ADMIN_PASSWORD) {
       // 2. We only change the React state. No sessionStorage used.

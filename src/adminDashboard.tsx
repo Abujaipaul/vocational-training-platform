@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { supabase } from './supabaseClient'; 
+import { Student } from './types';
 
 function AdminDashboard () {
   // 1. STATE
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -17,10 +18,10 @@ function AdminDashboard () {
       const { data, error } = await supabase
         .from('enrollments')
         .select('*'); 
-
+   
       if (error) throw error;
-      setStudents(data);
-    } catch (error) {
+      setStudents(data as Student[]);
+    } catch (error : any) {
       console.error("Error fetching database:", error.message);
     } finally {
       setLoading(false);
@@ -28,7 +29,7 @@ function AdminDashboard () {
   }
 
   // 3. UPDATE ENGINE (Checking someone in)
-  async function handleCheckIn (studentId) {
+  async function handleCheckIn (studentId : string)  {
     try {
       const { error } = await supabase
         .from('enrollments')
@@ -39,7 +40,7 @@ function AdminDashboard () {
 
       // Refresh the table immediately to show the green status
       fetchStudents(); 
-    } catch (error) {
+    } catch (error : any ) {
       console.error("Failed to check in student:", error.message);
       alert("Error checking in student.");
     }
@@ -78,7 +79,7 @@ function AdminDashboard () {
       {loading ? (
         <p>Loading database records...</p>
       ) : (
-        <table border="1" cellPadding="10" style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+        <table border={1} cellPadding="10" style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ backgroundColor: '#f4f4f4' }}>
               <th>Admission ID</th>

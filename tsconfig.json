@@ -1,0 +1,32 @@
+{
+/* STREAMING_CHUNK:Configuring the TypeScript compiler... */
+"compilerOptions": {
+"target": "ES2020",
+"useDefineForClassFields": true,
+"lib": ["ES2020", "DOM", "DOM.Iterable"],
+"module": "ESNext",
+"skipLibCheck": true,
+
+/* Bundler mode */
+"moduleResolution": "bundler",
+"allowImportingTsExtensions": true,
+"resolveJsonModule": true,
+"isolatedModules": true,
+"noEmit": true,
+"jsx": "react-jsx",
+
+/* Linting & Strictness */
+"strict": true,
+"noUnusedLocals": true,
+"noUnusedParameters": true,
+"noFallthroughCasesInSwitch": true,
+
+/* CRITICAL SETTING: The Hybrid Bridge */
+/* allowJs set to true means your current .jsx files will keep working normally */
+/* while we slowly convert them to .tsx one by one! */
+"allowJs": true
+
+
+},
+"include": ["src"]
+}

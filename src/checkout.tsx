@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, SyntheticEvent} from 'react'
 import { usePlatformStore } from './platformstore'
 import {usePaystackPayment} from 'react-paystack'
 import { useNavigate } from 'react-router-dom'
@@ -11,7 +11,7 @@ export default function CheckOut(){
    const [email, setEmail] = useState("")
    const [number, setNumber] = useState("")
    const [isPaid, setIsPaid] = useState(false)
-   const {user, selectedCourse, setSelectedCourse} = usePlatformStore()
+   const {selectedCourse, setSelectedCourse} = usePlatformStore()
 
      const navigate = useNavigate()
 
@@ -26,15 +26,15 @@ export default function CheckOut(){
       publicKey: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
     };
 
-     async function onSuccess (reference) {
+     async function onSuccess (reference : any) {
      console.log("Transaction Successful! Reference:", reference);
        // Generate the unique ID
         const newAdmissionId = generateAdmissionId();
        //  Prepare the exact payload matching your Supabase columns
-        const enrollmentData = {
+        const enrollmentData = { 
             email: email, 
-            course_name: selectedCourse.title, 
-            amount_paid: selectedCourse.price,
+            course_name: selectedCourse.title || "", 
+            amount_paid: selectedCourse.price || 0,
             admission_id: newAdmissionId
         };
         //  Fire it into the database!
@@ -66,7 +66,7 @@ export default function CheckOut(){
 
  const initializePayment = usePaystackPayment(config);
      
-  function handleSubmit(e) {
+  function handleSubmit(e : SyntheticEvent<HTMLFormElement>) {
     e.preventDefault(); 
     // Safety Check: Don't open Paystack if the email is empty
     if (!email || !name || !number) {
