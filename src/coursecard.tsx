@@ -1,8 +1,15 @@
 import { useNavigate } from "react-router-dom"
 import { usePlatformStore } from "./platformstore"
 
+interface CourseCardProps  {
+  title: string;
+  image: string;
+  duration: string;
+  price: number;
+}
 
-export default function CourseCard({title, image, duration, price}){
+
+export default function CourseCard({title, image, duration, price}: CourseCardProps ){
     const {selectedCourse, setSelectedCourse} = usePlatformStore()
 
     const navigate = useNavigate()
