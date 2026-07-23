@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, SyntheticEvent } from "react";
 import { supabase } from "./supabaseClient"; 
 import { useNavigate } from "react-router-dom";
 import { usePlatformStore } from "./platformstore";
@@ -12,7 +12,7 @@ export default function Login(){
     const {setUser} = usePlatformStore()
 
     // 2. Add 'async' here so we can use 'await' inside the function
-    async function handleSubmit(e){
+    async function handleSubmit(e : SyntheticEvent<HTMLFormElement>){
         e.preventDefault();
         
         if(!email || !password){

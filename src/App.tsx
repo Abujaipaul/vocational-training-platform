@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-     <ErrorBoundary FallbackComponent={ErrorFallback}>
+     <ErrorBoundary FallbackComponent ={ErrorFallback}>
   <BrowserRouter>
      <NavBar /> 
      

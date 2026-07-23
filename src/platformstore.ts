@@ -3,7 +3,6 @@ import welding from './assets/welding.png'
 import frontEnd from './assets/frontend.png'
 import carpenter from './assets/carpenter.png'
 
-// 1. Blueprint for the main courses in your array
 interface CourseItem {
   id: number;
   image: string;
@@ -12,18 +11,18 @@ interface CourseItem {
   price: number;
 }
 
-// 2. Blueprint for what gets sent to the checkout page
-interface SelectedCourse {
-  title: string;
-  price: number;
-}
-
-// 3. The Master Blueprint for the entire Zustand Store
 interface PlatformStore {
-  course: CourseItem[];
-  selectedCourse: SelectedCourse | null;
-  user: any; // Leaving as 'any' for now since Supabase handles the auth object
-  setSelectedCourse: (course: SelectedCourse | null) => void;
+  // We use the small blueprint here! This says: "course is a list of CourseItems"
+  course: CourseItem[]; 
+  
+  // This says: "selectedCourse is either an object with a title and price, or it's empty (null)"
+  selectedCourse: { title: string; price: number } | null;
+  
+  // This says: "user can be anything for now"
+  user: any; 
+  
+  // These describe your functions. They take data in, and return nothing (void).
+  setSelectedCourse: (course: { title: string; price: number } | null) => void;
   setUser: (sessionUser: any) => void;
 }
 

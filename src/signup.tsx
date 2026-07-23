@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, SyntheticEvent } from "react"
 import { supabase } from "./supabaseClient"
 import { useNavigate } from "react-router-dom"
 import { usePlatformStore } from "./platformstore"
@@ -12,7 +12,7 @@ export default function Signup(){
 
 
 
-      async function handleSubmit(el){
+      async function handleSubmit(el : SyntheticEvent<HTMLFormElement>){
       el.preventDefault()
        if(!email || !password){
         alert('Please input your email and password')

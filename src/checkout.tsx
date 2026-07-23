@@ -31,11 +31,11 @@ export default function CheckOut(){
        // Generate the unique ID
         const newAdmissionId = generateAdmissionId();
        //  Prepare the exact payload matching your Supabase columns
-        const enrollmentData = { 
-            email: email, 
-            course_name: selectedCourse.title || "", 
-            amount_paid: selectedCourse.price || 0,
-            admission_id: newAdmissionId
+      const enrollmentData = { 
+        email: email, 
+        course_name: selectedCourse?.title || "", 
+        amount_paid: selectedCourse?.price || 0,
+        admission_id: newAdmissionId
         };
         //  Fire it into the database!
         const { data, error } = await supabase
