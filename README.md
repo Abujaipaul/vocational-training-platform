@@ -28,7 +28,7 @@ For recruitment and code-review purposes, the `/admin` route is guarded by a ses
 * **Test Password:** `paul2026`
 
 ## 🗺 Future Roadmap
-* **Enterprise Identity Security:** Migrate the current session-based routing gate to complete Supabase Authentication with PostgreSQL Row Level Security (RLS). This will enforce strict, role-based backend access control, ensuring database mutations can only be executed by cryptographically verified administrative staff.
+* **Enterprise Identity Security:** Migrate the current session-based routing gate to complete Supabase Authentication with PostgreSQL Row Level Security (RLS). This will enforce strict, role-based backend access control, ensuring database mutations can only be executed by cryptographically verified administrative staff...
 
 ## 🚀 Local Setup
 1. Clone the repository.
