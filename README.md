@@ -1,4 +1,4 @@
-# Vocational Training Platform 
+# Vocational Training Platform 🚀
 
 A high-performance digital storefront and automated registration engine designed for technical and industrial training programs. 
 
@@ -15,6 +15,7 @@ This Single Page Application (SPA) digitizes the entire student onboarding workf
 * **Error Handling:** React-Error-Boundary
 
 ## ⚙️ Core Architecture & Features
+* **Enterprise-Grade Security (RLS):** Upgraded from frontend session gates to full Supabase Authentication. Enforced PostgreSQL Row Level Security (RLS) to ensure database mutations and queries are cryptographically protected and restricted strictly to verified administrative identities.
 * **Enterprise-Grade Type Safety:** Completely migrated the codebase to strict TypeScript. Engineered custom interfaces for the Zustand global store, applied exhaustive type narrowing for error handling, and enforced strict form event typing to eliminate runtime data crashes.
 * **Secure Fintech Data Pipeline:** Integrated the Paystack API to handle real-time transactions. Adhered to strict financial data rules by calculating transactions in the lowest denomination (Kobo) to prevent floating-point math errors.
 * **Event-Driven Automation:** Engineered a post-payment data hook utilizing Supabase webhooks. This captures transaction payloads and triggers a Make.com serverless pipeline to dispatch a formal Physical Admission Letter directly to the student's inbox the exact millisecond a payment is logged.
@@ -23,12 +24,15 @@ This Single Page Application (SPA) digitizes the entire student onboarding workf
 * **Defensive UI & Fault Tolerance:** Engineered a robust `ErrorBoundary` wrapper to catch fatal JavaScript runtime errors, guaranteeing the application degrades gracefully. Utilized Optional Chaining (`?.`) to prevent null-state rendering crashes.
 
 ## 🔒 Testing the Admin Dashboard
-For recruitment and code-review purposes, the `/admin` route is guarded by a session-based protected route.
-* **Navigation:** Visit `/admin`
-* **Test Password:**   `paul2026`   
+For testing and code-review purposes, the `/admin` route is cryptographically guarded by Supabase Authentication and RLS. 
+* **Navigation:** Visit `/admin` (Unauthenticated users will be routed to `/login`)
+* **Demo Email:** `tester@vocationalplatform.com`
+* **Demo Password:** `123456`
+
+*(Note: These are read-only demo credentials provided for portfolio review.)*
 
 ## 🗺 Future Roadmap
-* **Enterprise Identity Security:** Migrate the current session-based routing gate to complete Supabase Authentication with PostgreSQL Row Level Security (RLS). This will enforce strict, role-based backend access control, ensuring database mutations can only be executed by cryptographically verified administrative staff.........
+* **Data Visualization & Analytics:** Integrate Recharts to provide the admin dashboard with real-time graphical insights into enrollment trends, revenue aggregation, and course popularity metrics.
 
 ## 🚀 Local Setup
 1. Clone the repository.
